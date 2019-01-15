@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace jan19Lab3
 {
@@ -11,8 +12,7 @@ namespace jan19Lab3
         static void Main(string[] args)
         {
             bool runP = true;
-            Console.WriteLine("Please enter your first name");
-            string firstName = Console.ReadLine();
+            string firstName = nameValid();
             while (runP == true)
             {
                 Console.WriteLine("Hello {0}, Please enter an interger value between 1 and 100",
@@ -36,7 +36,7 @@ namespace jan19Lab3
                 {
                     Console.WriteLine("{0}, Odd", value);
                 }
-                else if (value % 2 != 0 & value > 1 || value < 100)
+                else if (value % 2 != 0 & value > 1 & value < 100)
                 {
                     Console.WriteLine("{0}, Odd", value);
                 }
@@ -73,6 +73,27 @@ namespace jan19Lab3
                 goOn = Continue();
             }
             return goOn;
+        }
+        public static string nameValid()
+        {
+            bool responseValid = true;
+            string firstName = "";
+            while (responseValid)
+            {
+                Console.WriteLine("Please enter your first name");
+                firstName = Console.ReadLine();
+
+                if (!Regex.IsMatch(firstName, @"^[A-Z]+[A-z]{2,30}$"))
+                {
+                    Console.WriteLine("I'm sorry, this is not a valid name");
+                }
+                else
+                {
+                    Console.WriteLine("Name is valid");
+                    break;
+                }
+            }
+            return firstName;
         }
     }
 }
