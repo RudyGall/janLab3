@@ -17,7 +17,7 @@ namespace jan19Lab3
             {
                 Console.WriteLine("Hello {0}, Please enter an interger value between 1 and 100",
                     firstName);
-                int value = int.Parse(Console.ReadLine());
+                int.TryParse(Console.ReadLine(), out int value);
                 Console.WriteLine("\nYou entered {0}, lets perform the conditional actions!",
                     value);
                 if (value % 2 == 0 & value >= 2 & value < 25)
